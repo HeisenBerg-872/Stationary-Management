@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard | PrintXchange</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #fefefe, #f0f9ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .dashboard-container {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .dashboard-container h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-container img {
+            max-width: 80px;
+            margin-bottom: 20px;
+            animation: zoomIn 0.8s ease-in-out;
+        }
+
+        .dashboard-container a,
+        .dashboard-container button {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            margin: 10px 0;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dashboard-container a {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .dashboard-container a:hover {
+            background-color: #2980b9;
+        }
+
+        .dashboard-container button {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .dashboard-container button:hover {
+            background-color: #c0392b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin Icon">
+    <h2>Welcome, Admin!</h2>
+
+    <a th:href="@{/admin/orders}">📄 View Print Orders</a>
+
+    <form th:action="@{/logout}" method="post" style="margin-top: 20px;">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button type="submit">🚪 Logout</button>
+    </form>
+</div>
+</body>
+</html>

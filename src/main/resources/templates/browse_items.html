@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Browse Exchange Items</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a2e0e6c6c1.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #f1f8e9, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #33691e;
+            margin-bottom: 30px;
+        }
+
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .card p {
+            margin: 6px 0;
+            color: #555;
+        }
+
+        .actions {
+            margin-top: 15px;
+        }
+
+        .actions a, .actions button {
+            text-decoration: none;
+            padding: 8px 14px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #388e3c;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions a:hover, .actions button:hover {
+            background-color: #2e7d32;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin: 30px auto;
+            color: #2e7d32;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .actions a, .actions button {
+                margin-top: 10px;
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📦 Available Items for Exchange</h2>
+
+    <div class="item-grid">
+        <div class="card" th:each="item : ${items}">
+            <h3 th:text="${item.itemName}"></h3>
+            <p><strong>Description:</strong> <span th:text="${item.description}"></span></p>
+            <p><strong>Category:</strong> <span th:text="${item.category}"></span></p>
+            <div class="actions">
+                <a th:href="@{/student/interest/{id}(id=${item.id})}">
+                    <i class="fas fa-hand-pointer"></i> I'm Interested
+                </a>
+                <form th:action="@{/student/mark-sold/{id}(id=${item.id})}" method="post" style="display:inline;">
+                    <button type="submit"><i class="fas fa-check-circle"></i> Mark as Sold</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a class="back-home" th:href="@{/home}"><i class="fas fa-home"></i> Back to Home</a>
+</div>
+
+</body>
+</html>

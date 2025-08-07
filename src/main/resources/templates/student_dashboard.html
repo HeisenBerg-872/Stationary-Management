@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Dashboard - PrintXchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a2e0e6c6c1.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #e1f5fe);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .dashboard-container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: #ffffffcc;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            animation: slideDown 1s ease;
+        }
+
+        h2 {
+            color: #00796b;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-links a {
+            display: block;
+            background-color: #00acc1;
+            color: white;
+            text-decoration: none;
+            margin: 15px auto;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .dashboard-links a:hover {
+            background-color: #00838f;
+            transform: scale(1.05);
+        }
+
+        .logout-button {
+            margin-top: 25px;
+            background-color: #e53935;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #c62828;
+            transform: scale(1.05);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <h2>🎓 Welcome, Student!</h2>
+
+    <div class="dashboard-links">
+        <a th:href="@{/student/my-orders}"><i class="fas fa-folder-open"></i> View My Orders</a>
+        <a th:href="@{/student/upload-order}"><i class="fas fa-upload"></i> Place a Print Order</a>
+        <a th:href="@{/student/items}"><i class="fas fa-exchange-alt"></i> Browse Exchange Items</a>
+        <a th:href="@{/student/post-item}"><i class="fas fa-plus-circle"></i> Post an Item</a>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button type="submit" class="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </form>
+</div>
+
+</body>
+</html>

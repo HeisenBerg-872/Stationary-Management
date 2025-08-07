@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PrintXchange</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)),
+                        url('https://images.unsplash.com/photo-1581092580502-fd7f5f2d9f65?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px 60px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            animation: slideDown 1s ease;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        a.button {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            margin: 10px;
+            display: inline-block;
+            font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .illustration {
+            margin-top: 20px;
+            animation: zoomIn 1s ease;
+        }
+
+        .illustration img {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                width: 90%;
+            }
+
+            .illustration img {
+                max-width: 200px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to <span style="color:#3498db;">PrintXchange</span></h2>
+        <p>Your one-stop platform for managing print orders and student item exchange.</p>
+
+        <div class="links">
+            <a th:href="@{/login}" class="button">Login</a>
+            <a th:href="@{/register}" class="button">Register</a>
+        </div>
+
+        <div class="illustration">
+            <img src="https://cdn-icons-png.flaticon.com/512/1009/1009894.png" alt="Print Icon">
+        </div>
+    </div>
+</body>
+</html>

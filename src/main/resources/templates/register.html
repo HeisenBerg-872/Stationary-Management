@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register | PrintXchange</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px 60px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, select {
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            transition: 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 6px rgba(52, 152, 219, 0.4);
+        }
+
+        button {
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .redirect {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .redirect a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            transition: color 0.2s ease;
+        }
+
+        .redirect a:hover {
+            color: #21618c;
+        }
+
+        .illustration {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: zoomIn 1s ease;
+        }
+
+        .illustration img {
+            max-width: 120px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="illustration">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Register Icon">
+    </div>
+    <h2>Create Your Account</h2>
+    <form th:action="@{/register}" method="post" th:object="${userDto}">
+        <input type="text" th:field="*{name}" placeholder="Full Name" required />
+        <input type="email" th:field="*{email}" placeholder="Email Address" required />
+        <input type="password" th:field="*{password}" placeholder="Password" required />
+        <input type="text" th:field="*{contact}" placeholder="Contact Number" required />
+
+        <select th:field="*{role}" required>
+            <option value="" disabled selected>Select Role</option>
+            <option th:value="STUDENT">Student</option>
+            <option th:value="ADMIN">Admin</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+    <div class="redirect">
+        <p>Already have an account? <a th:href="@{/login}">Login</a></p>
+    </div>
+</div>
+</body>
+</html>

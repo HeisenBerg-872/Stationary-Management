@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Success - PrintXchange</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a2e0e6c6c1.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #e8f5e9, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        h2 {
+            color: #2e7d32;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #444;
+        }
+
+        b {
+            font-weight: 700;
+            color: #1b5e20;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: #43a047;
+            margin-bottom: 20px;
+            animation: popIn 0.6s ease-out;
+        }
+
+        .actions a {
+            display: inline-block;
+            margin: 20px 10px 0;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: #2e7d32;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions a:hover {
+            background-color: #1b5e20;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            .success-icon {
+                font-size: 50px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .actions a {
+                font-size: 15px;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+
+    <h2>Order Submitted Successfully!</h2>
+    <p>Your Order ID: <b th:text="${orderId}"></b></p>
+
+    <div class="actions">
+        <a href="/student/upload-order"><i class="fas fa-plus-circle"></i> Place Another Order</a>
+        <a th:href="@{/home}"><i class="fas fa-home"></i> Back to Home</a>
+    </div>
+</div>
+
+</body>
+</html>
