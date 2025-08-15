@@ -68,6 +68,6 @@ PrintXchange/
 🛡 Security
 Spring Security handles authentication and authorization.
 
-CSRF protection is enabled.
+CSRF protection is enabled
 
 Session management ensures secure access control.
